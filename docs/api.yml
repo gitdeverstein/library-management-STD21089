@@ -222,7 +222,28 @@ paths:
           description: The topic with the specified ID was not found
         500:
           description: An internal server error occurred
-  
+  /books/{bookId}/topics/{topicId}:
+    put: 
+      tags:
+        - Books
+      parameters:
+        - name: bookId
+          in: path
+          required: true
+          schema: 
+            type: string
+        - name: topicId
+          in: path
+          required: true
+          schema: 
+            type: string
+      responses:
+        200:
+          description: The author has been successfully modified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
 components:
   schemas:
     Sex:
