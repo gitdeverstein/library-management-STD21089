@@ -244,6 +244,28 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Book'
+  /books/topics:
+    put: 
+      tags:
+        - Books
+      summary: Update a list of book's topics
+      operationId: updateBooksTopics
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Book'
+      responses:
+        200:
+          description: The list of books' topics has been successfully modified
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
 components:
   schemas:
     Sex:
