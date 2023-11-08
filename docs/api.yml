@@ -325,7 +325,7 @@ components:
     Author:
       type: object
       allOf:
-        - $ref: '#components/schemas/CrupdateBook'
+        - $ref: '#/components/schemas/CrupdateBook'
       properties:
         id:
           type: string
