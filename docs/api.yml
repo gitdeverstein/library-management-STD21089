@@ -38,6 +38,20 @@ paths:
           schema:
             type: string
             format: date
+        - in: path
+          name: page
+          description: page number for the books
+          required: true
+          schema:
+            type: integer
+            default: 1
+        - in: query
+          name: pageSize
+          description: number of pageSize
+          required: false
+          schema:
+            type: integer
+            default: 50
       responses:
         200:
           description: The list of filtered books
@@ -103,6 +117,20 @@ paths:
           required: false
           schema:
             type: string
+        - in: path
+          name: page
+          description: page number for the authors 
+          required: true
+          schema:
+            type: integer
+            default: 1
+        - in: query
+          name: pageSize
+          description: number of pageSize
+          required: false
+          schema:
+            type: integer
+            default: 50
       responses:
         200:
           description: The list of filtered authors
