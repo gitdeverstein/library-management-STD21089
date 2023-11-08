@@ -97,22 +97,32 @@ paths:
               schema:
                 $ref: '#/components/schemas/Author'
     delete:
-      summary: Delete an author
-      operationId: deleteAuthor
+      summary: Delete one or more authors
+      operationId: deleteAuthors
       parameters:
         - in: query
-          name: authorId
-          description: ID of the author to be deleted
+          name: authorIds
+          description: IDs of the authors to be deleted (comma-separated)
           required: true
           schema:
-            type: string
+            type: array
+            items:
+              type: string
       responses:
         200:
-          description: The author has been successfully deleted
+          description: The authors have been successfully deleted
         404:
-          description: The author with the specified ID was not found
+          description: Some or all authors with the specified IDs were not found
         500:
           description: An internal server error occurred
+      requestBody:
+        description: Data related to the deleted authors
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Author'
 components:
   schemas:
     Book:
