@@ -306,6 +306,10 @@ components:
           type: string
           format: date
     Topic:
+      properties:
+        id:
+          type: string
+        topicName:
           type: string
           enum:
             - ROMANCE
