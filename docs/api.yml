@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: Library API
-  version: 1.5.0
+  version: 1.6.0
   description: STD21089
 servers:
   - url: https://library.com
@@ -340,13 +340,13 @@ paths:
       tags:
         - Books
       parameters:
-        - name: bookId
-          in: path
+        - in: path
+          name: bookId
           required: true
           schema:
             type: string
-        - name: topicId
-          in: path
+        - in: path
+          name: topicId
           required: true
           schema:
             type: string
