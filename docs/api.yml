@@ -315,6 +315,29 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Book'
+  /authorsTopics:
+    get:
+      summary: Get list of AuthorTopics
+      description: Return a list of AuthorTopics
+      operationId: getAuthorsTopics
+      tags:
+        - Authors
+      parameters:
+        - in: query
+          name: authorId
+          description: ID of the author (optional)
+          required: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: The list of AuthorTopics
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AuthorTopic'
 components:
   schemas:
     Sex:
@@ -356,11 +379,22 @@ components:
           format: date
     Topic:
       properties:
-        id:
-          type: string
         topicName:
           type: string
           enum:
             - ROMANCE
             - COMEDY
             - OTHER
+    AuthorTopic:
+      type: object
+      properties:
+        authorId:
+          type: string
+        authorName:
+          type: string
+        authorSex:
+          $ref: '#/components/schemas/Sex'
+        topics:
+          type: array
+          items:
+            $ref: '#/components/schemas/Topic'
