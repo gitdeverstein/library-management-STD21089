@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: Library API
-  version: 1.3.0
+  version: 1.4.0
   description: STD21089
 servers:
   - url: https://library.com
@@ -107,6 +107,35 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Author'
+        400:
+          $ref: '#/components/schemas/ApiResponse'
+        403:
+          $ref: '#/components/schemas/ApiResponse'
+        500:
+          $ref: '#/components/schemas/ApiResponse'
+  /authorsTopics:
+    get:
+      summary: Get list of AuthorTopics
+      description: Return a list of AuthorTopics
+      operationId: getAuthorsTopics
+      tags:
+        - Authors
+      parameters:
+        - in: query
+          name: authorId
+          description: ID of the author (optional)
+          required: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: The list of AuthorTopics
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AuthorTopic'
         400:
           $ref: '#/components/schemas/ApiResponse'
         403:
@@ -359,35 +388,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Book'
-        400:
-          $ref: '#/components/schemas/ApiResponse'
-        403:
-          $ref: '#/components/schemas/ApiResponse'
-        500:
-          $ref: '#/components/schemas/ApiResponse'
-  /authorsTopics:
-    get:
-      summary: Get list of AuthorTopics
-      description: Return a list of AuthorTopics
-      operationId: getAuthorsTopics
-      tags:
-        - Authors
-      parameters:
-        - in: query
-          name: authorId
-          description: ID of the author (optional)
-          required: false
-          schema:
-            type: string
-      responses:
-        200:
-          description: The list of AuthorTopics
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/AuthorTopic'
         400:
           $ref: '#/components/schemas/ApiResponse'
         403:
