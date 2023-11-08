@@ -142,6 +142,31 @@ paths:
           $ref: '#/components/schemas/ApiResponse'
         500:
           $ref: '#/components/schemas/ApiResponse'
+  /author/page/{page}/size/{size}:
+    get:
+      summary: get page size
+      operationId: getPageSize
+      parameters:
+          - name: page
+            in: path
+            required: true
+            schema:
+              type: string
+      responses:
+        200:
+          description: The list of AuthorTopics
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/parameters/Page'
+        400:
+          $ref: '#/components/schemas/ApiResponse'
+        403:
+          $ref: '#/components/schemas/ApiResponse'
+        500:
+          $ref: '#/components/schemas/ApiResponse'
   /authors/import:
     post:
       summary: Import authors
@@ -506,6 +531,22 @@ components:
         type: integer
         default: 50
       required: false
+    Page1:
+      name: page
+      description: Page Number for pagination (default 1)
+      in: path
+      schema:
+        type: integer
+        default: 1
+      required: true
+    PageSize1:
+      name: pageSize
+      description: Page size for pagination default 50
+      in: path
+      schema:
+        type: integer
+        default: 50
+      required: true
     QueryPagination:
       in: query
       name: queryPagination
