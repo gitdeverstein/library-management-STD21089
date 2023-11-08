@@ -18,40 +18,7 @@ paths:
       tags:
         - Books
       parameters:
-        - in: query
-          name: bookName
-          description: Filter return books by given name
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: releaseDateStart
-          description: Filter return books by the start of release date interval
-          required: false
-          schema:
-            type: string
-            format: date
-        - in: query
-          name: releaseDateEnd
-          description: Filter return books by the end of release date interval
-          required: false
-          schema:
-            type: string
-            format: date
-        - in: path
-          name: page
-          description: page number for the books
-          required: true
-          schema:
-            type: integer
-            default: 1
-        - in: query
-          name: pageSize
-          description: number of pageSize
-          required: false
-          schema:
-            type: integer
-            default: 50
+        - $ref: '#/components/parameters/queryPagination'
       responses:
         200:
           description: The list of filtered books
@@ -111,26 +78,7 @@ paths:
       tags:
         - Authors
       parameters:
-        - in: query
-          name: authorName
-          description: Filter return authors by name
-          required: false
-          schema:
-            type: string
-        - in: path
-          name: page
-          description: page number for the authors 
-          required: true
-          schema:
-            type: integer
-            default: 1
-        - in: query
-          name: pageSize
-          description: number of pageSize
-          required: false
-          schema:
-            type: integer
-            default: 50
+        - $ref: '#/components/parameters/queryPagination'
       responses:
         200:
           description: The list of filtered authors
@@ -184,12 +132,12 @@ paths:
         - name: bookId
           in: path
           required: true
-          schema: 
+          schema:
             type: string
         - name: authorId
           in: path
           required: true
-          schema: 
+          schema:
             type: string
       responses:
         200:
@@ -206,26 +154,7 @@ paths:
         - Topics
       operationId: getTopic
       parameters:
-        - in: query
-          name: topicName
-          description: filter topic with topicName
-          schema:
-            type: string
-        - in: query
-          name: page
-          description: page number for pagination
-          required: false
-          schema:
-            type: integer
-            default: 1
-        - in: query
-          name: pageSize
-          description: number of pageSize
-          required: false
-          schema:
-            type: integer
-            default: 50
-
+        - $ref: '#/components/parameters/queryPagination'
       responses:
         200:
           description: The list of filtered topics
@@ -272,19 +201,19 @@ paths:
         500:
           description: An internal server error occurred
   /books/{bookId}/topics/{topicId}:
-    put: 
+    put:
       tags:
         - Books
       parameters:
         - name: bookId
           in: path
           required: true
-          schema: 
+          schema:
             type: string
         - name: topicId
           in: path
           required: true
-          schema: 
+          schema:
             type: string
       responses:
         200:
@@ -294,7 +223,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Book'
   /books/topics:
-    put: 
+    put:
       tags:
         - Books
       summary: Update a list of book's topics
@@ -398,3 +327,22 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Topic'
+  parameters:
+    Page:
+      name: page
+      description: Page Number for pagination (default 1)
+      in: query
+      schema:
+        type: integer
+        default: 1
+      required: false
+    pageSize:
+      name: pageSize
+      description: Page size for pagination default 50
+      in: query
+      schema:
+        type: integer
+        default: 50
+      required: false
+    queryPagination:
+      allOf: - $ref: '#/components/parameters/Page'
