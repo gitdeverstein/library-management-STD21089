@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: Library API
-  version: 1.4.0
+  version: 1.5.0
   description: STD21089
 servers:
   - url: https://library.com
@@ -479,6 +479,87 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Topic'
+    ImportAuthor:
+      oneOf:
+        - type: string
+          format: binary
+          description: Excel file for author import
+        - type: array
+          items:
+            type: object
+            properties:
+              authorName:
+                type: string
+              sex:
+                $ref: '#/components/schemas/Sex'
+      discriminator:
+          propertyName: importType
+          mapping:
+            excel: '#/components/schemas/ImportAuthorExcel'
+            json: '#/components/schemas/ImportAuthorJSON'
+    ImportAuthorExcel:
+      type: string
+      format: binary
+      description: Excel file for author import
+
+    ImportAuthorJSON:
+      type: array
+      items:
+        type: object
+        properties:
+          authorName:
+            type: string
+          sex:
+            $ref: '#/components/schemas/Sex'
+    ImportBook:
+      oneOf:
+        - type: string
+          format: binary
+          description: Excel file for book import
+        - type: array
+          items:
+            type: object
+            properties:
+              bookName:
+                type: string
+              author:
+                $ref: '#/components/schemas/Author'
+              pageNumbers:
+                type: integer
+              topic:
+                $ref: '#/components/schemas/Topic'
+              releaseDate:
+                type: string
+                format: date
+              idAuthor:
+                type: string
+      discriminator:
+        propertyName: importType
+        mapping:
+          excel: '#/components/schemas/ImportBookExcel'
+          json: '#/components/schemas/ImportBookJSON'
+    ImportBookExcel:
+      type: string
+      format: binary
+      description: Excel file for book import
+    ImportBookJSON:
+      type: array
+      items:
+        type: object
+        properties:
+          bookName:
+            type: string
+          author:
+            $ref: '#/components/schemas/Author'
+          pageNumbers:
+            type: integer
+          topic:
+            $ref: '#/components/schemas/Topic'
+          releaseDate:
+            type: string
+            format: date
+          idAuthor:
+            type: string
     ApiResponse:
       type: object
       properties:
