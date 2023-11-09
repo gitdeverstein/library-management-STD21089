@@ -145,6 +145,8 @@ paths:
   /author/page/{page}/size/{size}:
     get:
       summary: get page size
+      tags:
+        - Authors
       operationId: getPageSize
       parameters:
           - name: page
