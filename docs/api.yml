@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: Library API
-  version: 1.7.0
+  version: 1.8.0
   description: STD21089
 servers:
   - url: https://library.com
@@ -21,19 +21,13 @@ paths:
         - $ref: '#/components/parameters/QueryPagination'
       responses:
         200:
-          description: The list of filtered books
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Book'
+          $ref: '#/components/responses/200'
         400:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/400'
         403:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/403'
         500:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/500'
     put:
       summary: Create or update a list of books
       operationId: crupdateBooks
@@ -48,19 +42,13 @@ paths:
                 $ref: '#/components/schemas/CrupdateBook'
       responses:
         200:
-          description: The list of created or updated books
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Book'
+          $ref: '#/components/responses/200'
         400:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/400'
         403:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/403'
         500:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/500'
         
   /books/{bookId}:
     get:
@@ -78,17 +66,13 @@ paths:
             type: string
       responses:
         200:
-          description: The requested book
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Book'
+          $ref: '#/components/responses/200'
         400:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/400'
         403:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/403'
         500:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/500'
   /authors:
     get:
       summary: Get all authors
@@ -100,19 +84,13 @@ paths:
         - $ref: '#/components/parameters/QueryPagination'
       responses:
         200:
-          description: The list of filtered authors
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Author'
+          $ref: '#/components/responses/200'
         400:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/400'
         403:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/403'
         500:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/500'
   /authorsTopics:
     get:
       summary: Get list of AuthorTopics
@@ -129,19 +107,13 @@ paths:
             type: string
       responses:
         200:
-          description: The list of AuthorTopics
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/AuthorTopic'
+          $ref: '#/components/responses/200'
         400:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/400'
         403:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/403'
         500:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/500'
   /author/page/{page}/size/{size}:
     get:
       summary: get page size
@@ -156,19 +128,13 @@ paths:
               type: string
       responses:
         200:
-          description: The list of AuthorTopics
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/parameters/PathPage'
+          $ref: '#/components/responses/200'
         400:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/400'
         403:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/403'
         500:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/500'
   /authors/import:
     post:
       summary: Import authors
@@ -184,19 +150,13 @@ paths:
                 $ref: '#/components/schemas/Author'
       responses:
         200:
-          description: The list of imported authors
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Author'
+          $ref: '#/components/responses/200'
         400:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/400'
         403:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/403'
         500:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/500'
     put:
       summary: Create or update an author
       operationId: crupdateAuthor
@@ -209,17 +169,13 @@ paths:
               $ref: '#/components/schemas/Author'
       responses:
         200:
-          description: The created or updated author
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Author'
+          $ref: '#/components/responses/200'
         400:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/400'
         403:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/403'
         500:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/500'
     delete:
       summary: Delete an author
       operationId: deleteAuthor
@@ -234,13 +190,13 @@ paths:
             type: string
       responses:
         200:
-          description: The author has been successfully deleted
+          $ref: '#/components/responses/200'
         400:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/400'
         403:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/403'
         500:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/500'
   /books/{bookId}/authors/{authorId}:
     put:
       tags:
@@ -258,17 +214,13 @@ paths:
             type: string
       responses:
         200:
-          description: The author has been successfully modified
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Book'
+          $ref: '#/components/responses/200'
         400:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/400'
         403:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/403'
         500:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/500'
   /topics:
     get:
       summary: Get all topics
@@ -280,19 +232,13 @@ paths:
         - $ref: '#/components/parameters/QueryPagination'
       responses:
         200:
-          description: The list of filtered topics
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Topic'
+          $ref: '#/components/responses/200'
         400:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/400'
         403:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/403'
         500:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/500'
     put:
       summary: Create or update a topic
       operationId: crupdateTopic
@@ -305,17 +251,13 @@ paths:
               $ref: '#/components/schemas/Topic'
       responses:
         200:
-          description: The created or updated topic
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Topic'
+          $ref: '#/components/responses/200'
         400:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/400'
         403:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/403'
         500:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/500'
     delete:
       summary: Delete a topic
       operationId: deleteTopic
@@ -330,13 +272,13 @@ paths:
             type: string
       responses:
         200:
-          description: The topic has been successfully deleted
+          $ref: '#/components/responses/200'
         400:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/400'
         403:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/403'
         500:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/500'
   /books/{bookId}/topics/{topicId}:
     put:
       tags:
@@ -354,17 +296,13 @@ paths:
             type: string
       responses:
         200:
-          description: The author has been successfully modified
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Book'
+          $ref: '#/components/responses/200'
         400:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/400'
         403:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/403'
         500:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/500'
   /books/topics:
     put:
       tags:
@@ -380,19 +318,13 @@ paths:
                 $ref: '#/components/schemas/Book'
       responses:
         200:
-          description: The list of books' topics has been successfully modified
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Book'
+          $ref: '#/components/responses/200'
         400:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/400'
         403:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/403'
         500:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/500'
   /books/import:
     post:
       summary: Import books
@@ -408,19 +340,13 @@ paths:
                 $ref: '#/components/schemas/Book'
       responses:
         200:
-          description: The list of imported books
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Book'
+          $ref: '#/components/responses/200'
         400:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/400'
         403:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/403'
         500:
-          $ref: '#/components/schemas/ApiResponse'
+          $ref: '#/components/responses/500'
 components:
   schemas:
     Sex:
@@ -575,27 +501,51 @@ components:
               type: string
         body:
           type: object
+    BadRequestException:
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+      example:
+        type: BadRequestException
+        message: Bad request
+    NotAuthorizedException:
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+      example:
+        type: NotAuthorizedException
+        message: Not authorized
+    InternalServerException:
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+      example:
+        type: InternalServerException
+        message: Unexpected error
   responses:
-    400:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponse'
+    '400':
       description: Bad request
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ApiResponse'
+            $ref: '#/components/schemas/BadRequestException'
 
-    403:
+    '403':
       description: Forbidden
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ApiResponse'
+            $ref: '#/components/schemas/NotAuthorizedException'
 
-    500:
+    '500':
       description: Internal server error occurred
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ApiResponse'
+            $ref: '#/components/schemas/InternalServerException'
 
   parameters:
     QueryPage:
