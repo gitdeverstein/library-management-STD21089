@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: Library API
-  version: 1.6.0
+  version: 1.7.0
   description: STD21089
 servers:
   - url: https://library.com
@@ -599,33 +599,33 @@ components:
 
   parameters:
     QueryPage:
+      in: query
       name: page
       description: Page Number for pagination (default 1)
-      in: query
       schema:
         type: integer
         default: 1
       required: false
     QueryPageSize:
+      in: query
       name: pageSize
       description: Page size for pagination default 50
-      in: query
       schema:
         type: integer
         default: 50
       required: false
     PathPage:
+      in: path
       name: page
       description: Page Number for pagination (default 1)
-      in: path
       schema:
         type: integer
         default: 1
       required: true
     PathPageSize:
+      in: path
       name: pageSize
       description: Page size for pagination default 50
-      in: path
       schema:
         type: integer
         default: 50
