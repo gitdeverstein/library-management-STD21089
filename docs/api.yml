@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: Library API
-  version: 1.8.0
+  version: 1.9.0
   description: STD21089
 servers:
   - url: https://library.com
@@ -145,9 +145,7 @@ paths:
         content:
           application/json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Author'
+              $ref: '#/components/schemas/ImportAuthor'
       responses:
         200:
           $ref: '#/components/responses/200'
@@ -409,9 +407,6 @@ components:
             $ref: '#/components/schemas/Topic'
     ImportAuthor:
       oneOf:
-        - type: string
-          format: binary
-          description: Excel file for author import
         - type: array
           items:
             type: object
@@ -420,6 +415,9 @@ components:
                 type: string
               sex:
                 $ref: '#/components/schemas/Sex'
+        - type: string
+          format: binary
+          description: Excel file for author import
       discriminator:
           propertyName: importType
           mapping:
@@ -441,9 +439,6 @@ components:
             $ref: '#/components/schemas/Sex'
     ImportBook:
       oneOf:
-        - type: string
-          format: binary
-          description: Excel file for book import
         - type: array
           items:
             type: object
@@ -461,6 +456,9 @@ components:
                 format: date
               idAuthor:
                 type: string
+        - type: string
+          format: binary
+          description: Excel file for book import
       discriminator:
         propertyName: importType
         mapping:
