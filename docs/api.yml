@@ -346,6 +346,16 @@ paths:
         500:
           $ref: '#/components/responses/500'
 components:
+  securitySchemes:
+      admin:
+        type: oauth2
+        flows:
+          clientCredentials:
+            tokenUrl: https://library.com
+            scopes:
+              write:books: set list of book
+              write:author: set list of author
+              read:books: get list of book
   schemas:
     Sex:
       type: string
